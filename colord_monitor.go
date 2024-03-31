@@ -25,7 +25,12 @@ func main() {
 			continue
 		}
 
-		if colorStr != lastColor && isValidHexCode(colorStr) {
+		if !isValidHexCode(colorStr) {
+			lastColor = colorStr
+			continue
+		}
+
+		if colorStr != lastColor {
 			lastColor = colorStr
 			// fmt.Printf("Detected color change: %s\n", colorStr)
 
