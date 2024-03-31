@@ -6,7 +6,7 @@ I have been using Zed but I need to be able to quickly see the color for the col
 
 ## Install
 
-Installing will build the binaries and place them in the the user's `~/bin` directory.
+Installing will build the binaries and place them in the the user's `~/bin` directory. It will also create a `colord` bash file to launch the `colord` daemon.
 
 ```
 make
