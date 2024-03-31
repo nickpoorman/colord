@@ -2,7 +2,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os/exec"
 	"regexp"
@@ -28,7 +27,7 @@ func main() {
 
 		if colorStr != lastColor && isValidHexCode(colorStr) {
 			lastColor = colorStr
-			fmt.Printf("Detected color change: %s\n", colorStr)
+			// fmt.Printf("Detected color change: %s\n", colorStr)
 
 			// Spawn the display program with the color as an argument
 			cmd := exec.Command("colord_display", colorStr)
