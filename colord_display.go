@@ -7,6 +7,8 @@ import (
 	"os"
 	"regexp"
 	"runtime"
+	"strconv"
+	"strings"
 	"time"
 
 	"github.com/go-gl/gl/v4.1-core/gl"
@@ -26,6 +28,8 @@ func main() {
 		log.Fatal("Color argument missing")
 	}
 	colorStr := os.Args[1]
+	// trim the whitespace
+	colorStr = strings.TrimSpace(colorStr)
 
 	if !isValidHexCode(colorStr) {
 		// Try it with a # symbol prepended
@@ -33,6 +37,26 @@ func main() {
 		if !isValidHexCode(colorStr) {
 			return
 		}
+	}
+
+	displayTimeStr := os.Args[2]
+	if displayTimeStr == "" {
+		displayTimeStr = "1"
+	}
+	displayTime, err := strconv.Atoi(displayTimeStr)
+	if err != nil {
+		log.Fatalf("Error parsing display time: %v\n", err)
+		return
+	}
+
+	windowWidthStr := os.Args[3]
+	if windowWidthStr == "" {
+		windowWidthStr = "50"
+	}
+	windowWidth, err := strconv.Atoi(windowWidthStr)
+	if err != nil {
+		log.Fatalf("Error parsing display time: %v\n", err)
+		return
 	}
 
 	if err := glfw.Init(); err != nil {
@@ -47,8 +71,6 @@ func main() {
 	glfw.WindowHint(glfw.Resizable, glfw.False)
 	monitor := glfw.GetPrimaryMonitor()
 	mode := monitor.GetVideoMode()
-
-	windowWidth := 50
 
 	window, err := glfw.CreateWindow(windowWidth, windowWidth, "Clipboard Color", nil, nil)
 	if err != nil {
@@ -77,7 +99,7 @@ func main() {
 
 			// Reset the timer to hide the window every time a new color is copied
 			go func() {
-				time.Sleep(1 * time.Second) // Wait for 3 seconds
+				time.Sleep(time.Duration(displayTime) * time.Second) // Wait for 3 seconds
 				hideWindowChan <- struct{}{}
 			}()
 		}
