@@ -1,8 +1,10 @@
 # colord
 
-Monitors your clipboard and when it finds a #FFF or #FFFFFF color code, quickly displays the color code.
+Display the color of the selected hex color code instantly using `colord_display`. Additionally, `colord_monitor` can be used to monitor your clipboard for copied #FFF or #FFFFFF color codes and quickly display the color.
 
-I have been using Zed but I need to be able to quickly see the color for the color code when I am doing website design.
+![ColorPickerTask](https://github.com/nickpoorman/colord/assets/233103/6d3eadf4-8943-4ea0-8bcf-a52acd972ce0)
+
+I have been using [Zed](#zed-integration) but I need to be able to quickly see the color for the color code when I am doing website design.
 
 ## Install / Build
 
@@ -20,7 +22,7 @@ make clean
 
 ## Zed Integration
 
-I use this in Zed to quickly see the color code. Add the following to your Zed config files:
+I use this in [Zed](https://zed.dev) to quickly see the color code. Add the following to your Zed config files:
 
 ~/.config/zed/tasks.json
 
