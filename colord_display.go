@@ -27,6 +27,14 @@ func main() {
 	}
 	colorStr := os.Args[1]
 
+	if !isValidHexCode(colorStr) {
+		// Try it with a # symbol prepended
+		colorStr = fmt.Sprintf("#%s", colorStr)
+		if !isValidHexCode(colorStr) {
+			return
+		}
+	}
+
 	if err := glfw.Init(); err != nil {
 		log.Fatalf("failed to initialize glfw: %v", err)
 	}
